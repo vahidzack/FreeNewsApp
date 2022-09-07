@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:NewsApp.Models"
+             xmlns:viewModel="clr-namespace:NewsApp.ViewModels"
+             x:Class="NewsApp.Views.NewsDetailsPage"
+             BackgroundColor="#2C3333"
+             Shell.NavBarHasShadow="False"
+             Shell.NavBarIsVisible="False"
+             x:DataType="viewModel:NewsDetailsViewModel"
+             Title="NewsDetailsPage">
+    <Grid RowDefinitions="400,*">
+        <Image Grid.Row="0"
+                Source="{Binding Article.Image}"
+               Aspect="AspectFill"/>
+        <StackLayout Orientation="Horizontal"
+                     Margin="20,0,20,0">
+            <Label Text="&#x2FF;"
+                   FontSize="50"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalTextAlignment="Center"
+                   TextColor="White"
+                   FontFamily="OpenSansRegular">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="&#9733;"
+                   FontSize="33"
+                   Margin="10,28,50,0"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="White"
+                   FontFamily="OpenSansRegular">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BookmarkArticlesCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="&#8887;"
+                   Margin="0,35,0,0"
+                   FontSize="30"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="End"
+                   VerticalTextAlignment="Center"
+                   TextColor="White"
+                   FontFamily="OpenSansRegular">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShareNewsCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </StackLayout>
+        
+        <BoxView BackgroundColor="#1D2229"
+                 HeightRequest="100"
+                 Color="Transparent"
+                 Margin="0,-100,-20,0"
+                 VerticalOptions="Start"
+                 Grid.Row="1">
+            <BoxView.Shadow>
+                <Shadow Brush="black" Offset="0,-60"
+                        Opacity="0.5" Radius="20"/>
+            </BoxView.Shadow>
+        </BoxView>
+        <Label Text="{Binding Article.Title}"
+               Margin="10,10,30,35"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               FontFamily="Roboto2"
+               VerticalOptions="End"
+               TextColor="White"/>
+        <Frame Padding="10"
+               Grid.Row="1"
+               IsClippedToBounds="True"
+               BorderColor="Transparent"
+               Margin="30,-30,-10,-40"
+               CornerRadius="15" 
+               BackgroundColor="#32383f">
+            <ScrollView Margin="10">
+                <Label Text="{Binding Article.Content}"
+                       FontSize="Medium"
+                       FontFamily="Roboto2"
+                       TextColor="White"/>
+
+            </ScrollView>
+
+        </Frame>
+    </Grid>
+</ContentPage>
